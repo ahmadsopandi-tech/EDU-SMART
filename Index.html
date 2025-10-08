@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSmart - Aplikasi Sekolah Cerdas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --admin-color: #e63946;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 25px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn-danger {
+            background: var(--admin-color);
+            border: none;
+            border-radius: 25px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-danger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .schedule-item {
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .schedule-item:hover {
+            background: #f0f8ff;
+            transform: translateX(5px);
+        }
+        
+        .task-item {
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .task-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .progress-item {
+            margin-bottom: 20px;
+        }
+        
+        .ai-assistant {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .ai-message {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .forum-post {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        
+        .nav-link {
+            position: relative;
+            color: rgba(255,255,255,0.8) !important;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .admin-link {
+            color: #ff6b6b !important;
+        }
+        
+        .admin-link:hover {
+            color: #ff5252 !important;
+        }
+        
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .admin-panel {
+            background: linear-gradient(135deg, #ff9a8b 0%, #ff6b6b 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .schedule-reminder {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .schedule-reminder h5 {
+            color: var(--primary-color);
+        }
+        
+        .schedule-reminder .badge {
+            background: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .feature-icon {
+                font-size: 2rem;
+            }
+            
+            .card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="loginSection" class="login-container">
+        <div class="text-center mb-4">
+            <i class="bi bi-mortarboard-fill fs-1 text-primary"></i>
+            <h2 class="mt-2">EduSmart</h2>
+            <p class="text-muted">Aplikasi Manajemen Sekolah</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="text-center mt-3">
+                <small class="text-muted">Login sebagai siswa: gunakan email/password apa saja</small><br>
+                <small class="text-muted">Login sebagai admin: dutaofindonesian@gmail.com / XlM1</small>
+            </div>
+        </form>
+    </div>
+
+    <!-- Main App (Hidden by default) -->
+    <div id="mainApp" style="display: none;">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="#">
+                    <i class="bi bi-mortarboard-fill me-2"></i>EduSmart
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-section="dashboard">
+                                <i class="bi bi-house-door me-1"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="schedule">
+                                <i class="bi bi-calendar3 me-1"></i>Jadwal
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="tasks">
+                                <i class="bi bi-list-task me-1"></i>Tugas
+                                <span class="notification-badge">3</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="ai-assistant">
+                                <i class="bi bi-robot me-1"></i>AI Assistant
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-section="forum">
+                                <i class="bi bi-chat-dots me-1"></i>Forum
+                            </a>
+                        </li>
+                        <li class="nav-item" id="adminNav" style="display: none;">
+                            <a class="nav-link admin-link" href="#" data-section="admin">
+                                <i class="bi bi-shield-lock me-1"></i>Admin Panel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutBtn">
+                                <i class="bi bi-box-arrow-right me-1"></i>Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container mt-4">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h1 class="display-5 fw-bold text-primary">Selamat Datang, <span id="userRole">Siswa</span>! 👋</h1>
+                        <p class="lead">Aplikasi pintar untuk mengelola kegiatan sekolahmu</p>
+                    </div>
+                </div>
+                
+                <!-- Schedule Reminder -->
+                <div class="schedule-reminder">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5><i class="bi bi-bell-fill me-2"></i>Pengingat Jadwal</h5>
+                            <p class="mb-0">Besok: Ujian Matematika pukul 07:00 di Ruang 301</p>
+                        </div>
+                        <span class="badge bg-primary">Besok</span>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card text-center p-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                            <h5>Jadwal Hari Ini</h5>
+                            <p class="mb-0">5 Pelajaran</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card text-center p-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-clipboard-check"></i>
+                            </div>
+                            <h5>Tugas Aktif</h5>
+                            <p class="mb-0">3 Tugas</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card text-center p-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <h5>Progress Belajar</h5>
+                            <p class="mb-0">75%</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-4">
+                        <div class="card text-center p-3">
+                            <div class="feature-icon">
+                                <i class="bi bi-trophy"></i>
+                            </div>
+                            <h5>Pencapaian</h5>
+                            <p class="mb-0">12 Badge</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress Section -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-3"><i class="bi bi-bar-chart-line me-2"></i>Progress Mata Pelajaran</h4>
+                            <div class="progress-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Matematika</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-success" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Bahasa Indonesia</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-info" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>IPA</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-warning" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Bahasa Inggris</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h4 class="mb-3"><i class="bi bi-clock-history me-2"></i>Aktivitas Terkini</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>Menyelesaikan tugas Matematika</span>
+                                    </div>
+                                    <small class="text-muted">2 jam lalu</small>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-pencil-fill text-primary me-2"></i>
+                                        <span>Mengerjakan quiz IPA</span>
+                                    </div>
+                                    <small class="text-muted">5 jam lalu</small>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i class="bi bi-book-fill text-info me-2"></i>
+                                        <span>Membaca materi Bahasa Inggris</span>
+                                    </div>
+                                    <small class="text-muted">1 hari lalu</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section id="schedule" class="content-section" style="display: none;">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h2 class="fw-bold text-primary"><i class="bi bi-calendar3 me-2"></i>Jadwal Pelajaran</h2>
+                        <p class="lead">Kelola jadwal belajarmu dengan efisien</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4>Jadwal Hari Ini: Senin, 12 Juni 2023</h4>
+                                <button class="btn btn-primary btn-sm" id="addScheduleBtn" style="display: none;">
+                                    <i class="bi bi-plus-circle me-1"></i>Tambah Pelajaran
+                                </button>
+                            </div>
+                            
+                            <div id="scheduleList">
+                                <div class="schedule-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>Matematika</h5>
+                                            <p class="mb-0 text-muted">Pak Ahmad - Ruang 301</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary">07:00 - 08:30</span>
+                                            <button class="btn btn-sm btn-outline-danger ms-2 delete-schedule" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="schedule-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>Bahasa Indonesia</h5>
+                                            <p class="mb-0 text-muted">Bu Siti - Ruang 205</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary">08:30 - 10:00</span>
+<button class="btn btn-sm btn-outline-danger ms-2 delete-schedule" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="schedule-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>IPA</h5>
+                                            <p class="mb-0 text-muted">Pak Budi - Lab IPA</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary">10:30 - 12:00</span>
+                                            <button class="btn btn-sm btn-outline-danger ms-2 delete-schedule" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="schedule-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>Bahasa Inggris</h5>
+                                            <p class="mb-0 text-muted">Bu Rina - Ruang 102</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary">13:00 - 14:30</span>
+                                            <button class="btn btn-sm btn-outline-danger ms-2 delete-schedule" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="schedule-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>PKN</h5>
+                                            <p class="mb-0 text-muted">Pak Hadi - Ruang 201</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-primary">14:30 - 16:00</span>
+                                            <button class="btn btn-sm btn-outline-danger ms-2 delete-schedule" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+</div>
+                    
+                    <div class="col-md-4">
+                        <div class="card p-4">
+                            <h4 class="mb-3">Kalender Akademik</h4>
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>Acara</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>15 Jun</td>
+                                            <td>Ujian Matematika</td>
+                                        </tr>
+                                        <tr>
+                                            <td>20 Jun</td>
+                                            <td>Deadline Tugas IPA</td>
+                                        </tr>
+                                        <tr>
+                                            <td>25 Jun</td>
+                                            <td>Study Tour</td>
+                                        </tr>
+                                        <tr>
+                                            <td>30 Jun</td>
+                                            <td>Libur Semester</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section id="tasks" class="content-section" style="display: none;">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h2 class="fw-bold text-primary"><i class="bi bi-list-task me-2"></i>Manajemen Tugas</h2>
+                        <p class="lead">Kelola semua tugasmu di satu tempat</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card p-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4>Daftar Tugasmu</h4>
+                                <button class="btn btn-primary" id="addTaskBtn" style="display: none;">
+                                    <i class="bi bi-plus-circle me-1"></i>Tambah Tugas
+                                </button>
+                            </div>
+                            
+                            <div id="taskList">
+                                <div class="task-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Soal Matematika Bab 5</h5>
+                                            <p class="mb-0 text-muted">Deadline: 15 Juni 2023</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-warning">Pending</span>
+                                            <button class="btn btn-sm btn-outline-primary ms-2 edit-task" style="display: none;">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger ms-1 delete-task" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Praktikum IPA Laporan</h5>
+                                            <p class="mb-0 text-muted">Deadline: 20 Juni 2023</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-danger">Urgent</span>
+                                            <button class="btn btn-sm btn-outline-primary ms-2 edit-task" style="display: none;">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger ms-1 delete-task" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Presentasi Bahasa Inggris</h5>
+                                            <p class="mb-0 text-muted">Deadline: 25 Juni 2023</p>
+                                        </div>
+                                        <div>
+<span class="badge bg-info">In Progress</span>
+                                            <button class="btn btn-sm btn-outline-primary ms-2 edit-task" style="display: none;">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger ms-1 delete-task" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="task-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5>Essay Sejarah</h5>
+                                            <p class="mb-0 text-muted">Deadline: 30 Juni 2023</p>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-success">Completed</span>
+                                            <button class="btn btn-sm btn-outline-primary ms-2 edit-task" style="display: none;">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger ms-1 delete-task" style="display: none;">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card p-4 mb-4">
+                            <h4 class="mb-3">Statistik Tugas</h4>
+                            <canvas id="taskChart" width="400" height="300"></canvas>
+                        </div>
+                        
+                        <div class="card p-4">
+                            <h4 class="mb-3">Tugas Mendatang</h4>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-calendar-event text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Ujian Matematika</h6>
+                                    <small class="text-muted">3 hari lagi</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-calendar-event text-danger fs-4"></i>
+                                </div>
+                                <div>
+<h6 class="mb-0">Deadline Tugas IPA</h6>
+                                    <small class="text-muted">8 hari lagi</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="bi bi-calendar-event text-warning fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Presentasi Bahasa Inggris</h6>
+                                    <small class="text-muted">13 hari lagi</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Assistant Section -->
+            <section id="ai-assistant" class="content-section" style="display: none;">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h2 class="fw-bold text-primary"><i class="bi bi-robot me-2"></i>AI Study Assistant</h2>
+                        <p class="lead">Asisten pintar untuk membantu belajarmu</p>
+                    </div>
+                </div>
+                
+                <div class="ai-assistant">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="ai-message">
+                                <div class="d-flex align-items-start mb-3">
+                                    <i class="bi bi-robot fs-3 me-3"></i>
+                                    <div>
+                                        <h5>Halo! Saya EduBot, asisten belajarmu</h5>
+                                        <p>Aku bisa membantumu dengan:</p>
+                                        <ul>
+                                            <li>Menjawab pertanyaan pelajaran</li>
+                                            <li>Membuat rencana belajar</li>
+                                            <li>Memberikan tips belajar efektif</li>
+                                            <li>Menganalisis progress belajarmu</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-message">
+                                <div class="d-flex align-items-start mb-3">
+                                    <i class="bi bi-person-circle fs-3 me-3"></i>
+                                    <div>
+                                        <h5>Kamu: Bisa bantu saya dengan soal matematika?</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+<div class="ai-message">
+                                <div class="d-flex align-items-start mb-3">
+                                    <i class="bi bi-robot fs-3 me-3"></i>
+                                    <div>
+                                        <h5>EduBot: Tentu! Ada soal apa yang ingin kamu tanyakan?</h5>
+                                        <p>Kirimkan gambarnya atau ketik soalnya ya 😊</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group mt-4">
+                                <input type="text" class="form-control" placeholder="Ketik pertanyaanmu...">
+                                <button class="btn btn-light" type="button">
+                                    <i class="bi bi-paperclip"></i>
+                                </button>
+                                <button class="btn btn-light" type="button">
+                                    <i class="bi bi-mic"></i>
+                                </button>
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-send"></i> Kirim
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card p-3 mb-3">
+                                <h5><i class="bi bi-lightbulb me-2"></i>Fitur AI Assistant</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Penjelasan materi</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Pembahasan soal</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Rencana belajar</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Quiz interaktif</li>
+                                    <li><i class="bi bi-check-circle text-success me-2"></i>Tips motivasi</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card p-3">
+                                <h5><i class="bi bi-graph-up me-2"></i>Analisis Belajarmu</h5>
+                                <p>Berdasarkan aktivitasmu:</p>
+                                <div class="progress mb-2" style="height: 10px;">
+                                    <div class="progress-bar bg-success" style="width: 75%"></div>
+                                </div>
+                                <small>Kamu sudah belajar 75% dari target mingguan! 🔥</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forum Section -->
+<section id="forum" class="content-section" style="display: none;">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h2 class="fw-bold text-primary"><i class="bi bi-chat-dots me-2"></i>Forum Diskusi</h2>
+                        <p class="lead">Diskusikan pelajaran dengan teman sekelas</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card p-4 mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4>Topik Diskusi</h4>
+                                <button class="btn btn-primary" id="addTopicBtn" style="display: none;">
+                                    <i class="bi bi-plus-circle me-1"></i>Buat Topik Baru
+                                </button>
+                            </div>
+                            
+                            <div id="forumList">
+                                <div class="forum-post">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>Bantuan Soal Matematika Bab Trigonometri</h5>
+                                            <p class="mb-0">Ada yang bisa bantu saya dengan soal nomor 5? Saya bingung cara menghitung sudutnya...</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <small class="text-muted"> oleh <strong>Andi</strong></small>
+                                            <div>
+                                                <span class="badge bg-primary">Matematika</span>
+                                                <span class="badge bg-secondary">12 balasan</span>
+                                                <button class="btn btn-sm btn-outline-danger ms-2 delete-forum" style="display: none;">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="forum-post">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>Study Group Bahasa Inggris</h5>
+                                            <p class="mb-0">Siapa yang mau ikut study group untuk persiapan UAS? Kita bisa belajar bareng setiap Sabtu...</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <small class="text-muted"> oleh <strong>Siti</strong></small>
+                                            <div>
+                                                <span class="badge bg-info">Bahasa Inggris</span>
+                                                <span class="badge bg-secondary">8 balasan</span>
+                                                <button class="btn btn-sm btn-outline-danger ms-2 delete-forum" style="display: none;">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+</div>
+                                </div>
+                                
+                                <div class="forum-post">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5>Referensi Buku IPA yang Bagus</h5>
+                                            <p class="mb-0">Ada rekomendasi buku tambahan untuk pelajaran IPA? Saya ingin belajar lebih dalam...</p>
+                                        </div>
+                                        <div class="text-end">
+                                            <small class="text-muted"> oleh <strong>Budi</strong></small>
+                                            <div>
+                                                <span class="badge bg-warning">IPA</span>
+                                                <span class="badge bg-secondary">5 balasan</span>
+                                                <button class="btn btn-sm btn-outline-danger ms-2 delete-forum" style="display: none;">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card p-4 mb-4">
+                            <h5><i class="bi bi-fire me-2"></i>Topik Populer</h5>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-hash text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">#UjianMatematika</h6>
+                                    <small class="text-muted">24 diskusi</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="bi bi-hash text-success fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">#StudyGroup</h6>
+                                    <small class="text-muted">18 diskusi</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <i class="bi bi-hash text-danger fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">#TugasIPA</h6>
+                                    <small class="text-muted">15 diskusi</small>
+                                </div>
+</div>
+                        </div>
+                        
+                        <div class="card p-4">
+                            <h5><i class="bi bi-people me-2"></i>Aktivitas Terbaru</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    <strong>Rina</strong> membalas diskusi Matematika
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-person-circle text-success me-2"></i>
+                                    <strong>Doni</strong> membuat topik baru
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-person-circle text-warning me-2"></i>
+                                    <strong>Lisa</strong> bergabung study group
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Panel Section -->
+            <section id="admin" class="content-section" style="display: none;">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="admin-panel">
+                            <h2 class="fw-bold"><i class="bi bi-shield-lock me-2"></i>Admin Panel</h2>
+                            <p class="lead">Kelola konten aplikasi EduSmart</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card p-4 mb-4">
+                            <h4><i class="bi bi-gear me-2"></i>Pengaturan Admin</h4>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card p-3 text-center">
+                                        <i class="bi bi-calendar-plus fs-1 text-primary mb-3"></i>
+                                        <h5>Kelola Jadwal</h5>
+                                        <p>Tambah, edit, hapus jadwal pelajaran</p>
+                                        <button class="btn btn-primary" onclick="showSection('schedule')">Kelola Jadwal</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card p-3 text-center">
+                                        <i class="bi bi-clipboard-plus fs-1 text-success mb-3"></i>
+                                        <h5>Kelola Tugas</h5>
+<p>Tambah, edit, hapus tugas siswa</p>
+                                        <button class="btn btn-primary" onclick="showSection('tasks')">Kelola Tugas</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card p-3 text-center">
+                                        <i class="bi bi-chat-square-text fs-1 text-info mb-3"></i>
+                                        <h5>Kelola Forum</h5>
+                                        <p>Moderasi diskusi dan topik</p>
+                                        <button class="btn btn-primary" onclick="showSection('forum')">Kelola Forum</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-4">
+                            <h4><i class="bi bi-bar-chart-line me-2"></i>Statistik Penggunaan</h4>
+                            <div class="row">
+                                <div class="col-md-3 text-center mb-3">
+                                    <h3 class="text-primary">245</h3>
+                                    <p>Pengguna Aktif</p>
+                                </div>
+                                <div class="col-md-3 text-center mb-3">
+                                    <h3 class="text-success">1,250</h3>
+                                    <p>Total Tugas</p>
+                                </div>
+                                <div class="col-md-3 text-center mb-3">
+                                    <h3 class="text-warning">89</h3>
+                                    <p>Topik Forum</p>
+                                </div>
+                                <div class="col-md-3 text-center mb-3">
+                                    <h3 class="text-info">567</h3>
+                                    <p>Pesan AI Assistant</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>EduSmart</h5>
+                        <p>Aplikasi manajemen sekolah inovatif untuk siswa modern</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Fitur</h5>
+                        <ul class="list-unstyled">
+<li><a href="#" class="text-white-50">Jadwal Pelajaran</a></li>
+                            <li><a href="#" class="text-white-50">Manajemen Tugas</a></li>
+                            <li><a href="#" class="text-white-50">AI Assistant</a></li>
+                            <li><a href="#" class="text-white-50">Forum Diskusi</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Kontak</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-envelope me-2"></i>info@edusmart.sch.id</li>
+                            <li><i class="bi bi-telephone me-2"></i>(021) 1234-5678</li>
+                            <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="bg-white-50">
+                <div class="text-center">
+                    <p class="mb-0">&copy; 2023 EduSmart. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Authentication
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginSection = document.getElementById('loginSection');
+            const mainApp = document.getElementById('mainApp');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const adminNav = document.getElementById('adminNav');
+            const userRole = document.getElementById('userRole');
+            
+            // Check if already logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const isAdmin = localStorage.getItem('isAdmin') === 'true';
+            
+            if (isLoggedIn) {
+                showMainApp(isAdmin);
+            }
+            
+            // Login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Check admin credentials
+                if (email === 'dutaofindonesian@gmail.com' && password === 'XlM1') {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('isAdmin', 'true');
+                    showMainApp(true);
+                } else if (email && password) {
+                    // Regular user login
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('isAdmin', 'false');
+                    showMainApp(false);
+                } else {
+                    alert('Email dan password harus diisi');
+                }
+            });
+            
+            // Logout
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('isAdmin');
+                loginSection.style.display = 'block';
+                mainApp.style.display = 'none';
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+            });
+            
+            function showMainApp(isAdmin) {
+                loginSection.style.display = 'none';
+                mainApp.style.display = 'block';
+                
+                if (isAdmin) {
+                    adminNav.style.display = 'block';
+                    userRole.textContent = 'Admin';
+                    showAdminControls();
+                } else {
+                    adminNav.style.display = 'none';
+                    userRole.textContent = 'Siswa';
+                    hideAdminControls();
+                }
+                
+                // Initialize navigation
+                initNavigation();
+            }
+            
+            function showAdminControls() {
+                // Show admin buttons
+document.getElementById('addScheduleBtn').style.display = 'inline-block';
+                document.getElementById('addTaskBtn').style.display = 'inline-block';
+                document.getElementById('addTopicBtn').style.display = 'inline-block';
+                
+                // Show delete buttons
+                document.querySelectorAll('.delete-schedule').forEach(btn => {
+                    btn.style.display = 'inline-block';
+                });
+                document.querySelectorAll('.delete-task').forEach(btn => {
+                    btn.style.display = 'inline-block';
+                });
+                document.querySelectorAll('.edit-task').forEach(btn => {
+                    btn.style.display = 'inline-block';
+                });
+                document.querySelectorAll('.delete-forum').forEach(btn => {
+                    btn.style.display = 'inline-block';
+                });
+            }
+            
+            function hideAdminControls() {
+                // Hide admin buttons
+                document.getElementById('addScheduleBtn').style.display = 'none';
+                document.getElementById('addTaskBtn').style.display = 'none';
+                document.getElementById('addTopicBtn').style.display = 'none';
+                
+                // Hide delete buttons
+                document.querySelectorAll('.delete-schedule').forEach(btn => {
+                    btn.style.display = 'none';
+                });
+                document.querySelectorAll('.delete-task').forEach(btn => {
+                    btn.style.display = 'none';
+                });
+                document.querySelectorAll('.edit-task').forEach(btn => {
+                    btn.style.display = 'none';
+                });
+                document.querySelectorAll('.delete-forum').forEach(btn => {
+                    btn.style.display = 'none';
+                });
+            }
+            
+            // Navigation functionality
+            function initNavigation() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                const sections = document.querySelectorAll('.content-section');
+                
+                navLinks.forEach(link => {
+link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Remove active class from all links
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        
+                        // Add active class to clicked link
+                        this.classList.add('active');
+                        
+                        // Hide all sections
+                        sections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        
+                        // Show selected section
+                        const sectionId = this.getAttribute('data-section');
+                        document.getElementById(sectionId).style.display = 'block';
+                        
+                        // Initialize chart if tasks section is selected
+                        if (sectionId === 'tasks') {
+                            initTaskChart();
+                        }
+                    });
+                });
+            }
+            
+            // Initialize task chart
+            function initTaskChart() {
+                const ctx = document.getElementById('taskChart');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Completed', 'In Progress', 'Pending', 'Overdue'],
+                            datasets: [{
+                                data: [12, 8, 5, 2],
+                                backgroundColor: [
+                                    'rgba(75, 192, 192, 0.8)',
+                                    'rgba(54, 162, 235, 0.8)',
+                                    'rgba(255, 206, 86, 0.8)',
+                                    'rgba(255, 99, 132, 0.8)'
+                                ],
+                                borderWidth: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+}
+                            }
+                        }
+                    });
+                }
+            }
+            
+            // Delete functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.delete-schedule')) {
+                    if (confirm('Apakah Anda yakin ingin menghapus jadwal ini?')) {
+                        e.target.closest('.schedule-item').remove();
+                    }
+                }
+                
+                if (e.target.closest('.delete-task')) {
+                    if (confirm('Apakah Anda yakin ingin menghapus tugas ini?')) {
+                        e.target.closest('.task-item').remove();
+                    }
+                }
+                
+                if (e.target.closest('.delete-forum')) {
+                    if (confirm('Apakah Anda yakin ingin menghapus topik ini?')) {
+                        e.target.closest('.forum-post').remove();
+                    }
+                }
+            });
+            
+            // Simulate notification badge update
+            setTimeout(() => {
+                const badge = document.querySelector('.notification-badge');
+                if (badge) {
+                    badge.textContent = '2';
+                }
+            }, 5000);
+        });
+        
+        // Helper function to show section
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active nav
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === sectionId) {
+                    link.classList.add('active');
+}
+            });
+        }
+    </script>
+</body>
+</html>
